@@ -1,0 +1,17 @@
+{
+  "name": "gohobby-telegram-webhook",
+  "version": "1.0.0",
+  "description": "Маленький вебхук Telegram-бота для входа в GoHobby. Пишет подтверждение в Firestore.",
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase": "^12.15.0"
+  }
+}

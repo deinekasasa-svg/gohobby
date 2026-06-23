@@ -1,17 +1,20 @@
 {
   "expo": {
-    "name": "HobbyMatch",
-    "slug": "HobbyMatch",
+    "name": "GoHobby",
+    "slug": "gohobby",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#121212",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gohobby.app"
     },
     "android": {
+      "package": "com.gohobby.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#121212",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -20,6 +23,24 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "@react-native-community/datetimepicker",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Приложению нужен доступ к галерее, чтобы выбрать фото профиля и активностей.",
+          "cameraPermission": "Приложению нужен доступ к камере, чтобы сделать фото профиля."
+        }
+      ],
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "GoHobby хочет использовать вашу геолокацию, чтобы показывать расстояние до участников активностей.",
+          "isIosBackgroundLocationEnabled": false
+        }
+      ]
+    ]
   }
 }

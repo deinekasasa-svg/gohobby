@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ┌──────────────────────────────────────────────────────────────────────┐
+    // │ ВНИМАНИЕ: MVP без реальной аутентификации.                            │
+    // │ Вход по SMS пока заглушка (см. AuthContext), поэтому request.auth     │
+    // │ всегда null. Если требовать auth — все записи отклоняются сервером,   │
+    // │ хотя на устройстве-отправителе сообщение видно из локального кэша     │
+    // │ (latency compensation), а собеседник его НЕ получает.                 │
+    // │ Поэтому на время MVP доступ открыт. КАК ТОЛЬКО появится настоящая     │
+    // │ аутентификация (Firebase Phone Auth) — обязательно ужесточить:        │
+    // │ привязать запись к request.auth.uid и участникам чата.                │
+    // └──────────────────────────────────────────────────────────────────────┘
+
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /activities/{activityId} {
+      allow read, write: if true;
+    }
+    match /likes/{likeId} {
+      allow read, write: if true;
+    }
+    // Одноразовые токены входа через Telegram (создаёт приложение, подтверждает бот).
+    match /loginTokens/{token} {
+      allow read, write: if true;
+    }
+    match /matches/{matchId} {
+      allow read, write: if true;
+    }
+    match /chats/{chatId} {
+      allow read, write: if true;
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+  }
+}
